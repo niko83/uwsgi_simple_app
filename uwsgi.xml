@@ -1,0 +1,38 @@
+<uwsgi>
+    <master />
+
+    <workers>4</workers>
+    <no-orphans />
+
+    <spooler>/var/www/uwsgi_simple_app/src/tmp/spooler</spooler>
+
+    <signal-bufsize>1950</signal-bufsize>
+    <!-- <enable-threads />   <threads>5</threads> -->
+    <!-- <async>10</async> -->
+    <!-- <buffer-size>32768</buffer-size> -->
+    <chmod-socket>666</chmod-socket>
+    <!-- <socket-timeout>1</socket-timeout> -->
+    <listen>100</listen>
+    <harakiri>150</harakiri>
+    <harakiri-verbose />
+    <max-requests>1000</max-requests>
+    <buffer-size>8192</buffer-size>
+
+    <!-- <cpu-affinity>4</cpu-affinity> -->
+
+    <!-- <touch-reload>/var/www/touchfiles/reload</touch-reload> -->
+
+    <stats>/var/www/uwsgi_simple_app/src/tmp/stats.socket</stats>
+
+    <socket id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.trunk.sock</socket>
+    <pidfile id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.trunk.pid</pidfile>
+    <chdir id="trunk">/var/www/uwsgi_simple_app/src/var/www/uwsgi_simple_app/src</chdir>
+
+    <!--<daemonize>/var/log/uwsgi.log</daemonize>-->
+    <module>wsgi</module>
+    <callable>application</callable>
+    <vacuum />
+     <!-- <env>DJANGO_SETTINGS_MODULE=settings2</env> -->
+    <memory-report/>
+    <!-- <async>10</async> -->
+</uwsgi>
