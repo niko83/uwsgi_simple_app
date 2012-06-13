@@ -13,9 +13,21 @@ def application(environ, start_response):
     return [output]
 
 
-@uwsgidecorators.cron(-1,-1,-1,-1,-1)
-def f2(num):
-    print str(num)+'__cron'
+import datetime, time
+@uwsgidecorators.cron(30, 3, -1, -1, -1)
+def cron(num):
+    print '%s Every night on 3:00 run this code (signum %d)' % (datetime.datetime.now().strftime('%H:%m:%S'), num)
+    time.sleep(50)
+
+@uwsgidecorators.timer(30)
+def f_timer(num):
+    print '%s Every 30 seconds run this code (signum %d)' % (datetime.datetime.now().strftime('%H:%m:%S'), num)
+    time.sleep(25)
+
+@uwsgidecorators.filemon('/var/www/uwsgi_simple_app/src/tmp/touchfiles/touch_me')
+def touch(num):
+    print '%s Touch file /var/www/uwsgi_simple_app/src/tmp/touchfiles/touch_me (signum %d)' % (datetime.datetime.now().strftime('%H:%m:%S'), num)
+    #f3.spool()
 
 @uwsgidecorators.spool
 def f3(num):
@@ -34,9 +46,6 @@ def f3(num):
     f.write('\n' + '+' * tab + 'end: '+str(numberS))
     f.close()
 
-@uwsgidecorators.filemon('/var/www/touchfiles/f1')
-def f4(num):
-    f3.spool()
 
 @uwsgidecorators.spool
 def f6(num):
