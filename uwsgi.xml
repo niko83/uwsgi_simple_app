@@ -24,8 +24,8 @@
 
     <stats>/var/www/uwsgi_simple_app/src/tmp/stats.socket</stats>
 
-    <socket id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.trunk.sock</socket>
-    <pidfile id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.trunk.pid</pidfile>
+    <socket id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.sock</socket>
+    <pidfile id="trunk">/var/www/uwsgi_simple_app/src/tmp/uwsgi.pid</pidfile>
     <chdir id="trunk">/var/www/uwsgi_simple_app/src/var/www/uwsgi_simple_app/src</chdir>
 
     <!--<daemonize>/var/log/uwsgi.log</daemonize>-->
