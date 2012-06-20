@@ -1,18 +1,18 @@
 <uwsgi>
     <master />
 
-    <workers>4</workers>
+    <workers>1</workers>
     <no-orphans />
 
     <spooler>/var/www/uwsgi_simple_app/src/tmp/spooler</spooler>
 
     <signal-bufsize>1950</signal-bufsize>
-    <!-- <enable-threads />   <threads>5</threads> -->
+    <enable-threads />   <threads>4</threads>
     <!-- <async>10</async> -->
     <!-- <buffer-size>32768</buffer-size> -->
     <chmod-socket>666</chmod-socket>
     <!-- <socket-timeout>1</socket-timeout> -->
-    <listen>100</listen>
+    <listen>10</listen>
     <harakiri>150</harakiri>
     <harakiri-verbose />
     <max-requests>1000</max-requests>
