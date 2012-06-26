@@ -1,6 +1,7 @@
 *.py[co]
 .ropeproject
-tmp/uwsgi.pid
+tmp/sockets/*
+tmp/logs/*
 
 # Packages
 *.egg

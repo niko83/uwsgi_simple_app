@@ -1,13 +1,13 @@
 <uwsgi>
     <master />
 
-    <workers>1</workers>
+    <workers>4</workers>
     <no-orphans />
 
     <spooler>/var/www/uwsgi_simple_app/src/tmp/spooler</spooler>
 
     <signal-bufsize>1950</signal-bufsize>
-    <enable-threads />   <threads>4</threads>
+    <!-- <enable-threads />   <threads>4</threads> -->
     <!-- <async>10</async> -->
     <!-- <buffer-size>32768</buffer-size> -->
     <chmod-socket>666</chmod-socket>
@@ -20,7 +20,7 @@
 
     <!-- <cpu-affinity>4</cpu-affinity> -->
 
-    <!-- <touch-reload>/var/www/touchfiles/reload</touch-reload> -->
+    <touch-reload>/var/www/uwsgi_simple_app/src/tmp/touchfiles/reload</touch-reload>
 
     <stats>/var/www/uwsgi_simple_app/src/tmp/sockets/stats.socket</stats>
 
