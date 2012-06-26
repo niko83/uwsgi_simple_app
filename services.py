@@ -20,18 +20,18 @@ def cron(num):
     print '%s Every night on 3:00 run this code (signum %d)' % (datetime.datetime.now().strftime('%H:%M:%S'), num)
     time.sleep(50)
 
-@uwsgidecorators.timer(30)
+@uwsgidecorators.timer(1)
 @uwsgidecorators.thread
+@uwsgidecorators.lock
 def f_timer(num):
-    print '%s Every 30 seconds run this code (signum %d)' % (datetime.datetime.now().strftime('%H:%M:%S'), num)
-    time.sleep(25)
+    print '%s Every 10 seconds run this code (signum %d)' % (datetime.datetime.now().strftime('%H:%M:%S'), num)
+    time.sleep(5)
 
 @uwsgidecorators.filemon(TOUCHFILES_PATH + 'touch_me')
 def touch(num):
     print '%s Touch file %s (signum %d)' % (datetime.datetime.now().strftime('%H:%M:%S'), TOUCHFILES_PATH + 'touch_me', num)
-    spool_proc.spool()
 
-@uwsgidecorators.filemon(TOUCHFILES_PATH + 'start_spool_proc')
+@uwsgidecorators.filemon(TOUCHFILES_PATH + 'spooler')
 def start_spool(num):
     print '%s add procces  to spool (signum %d)' % (datetime.datetime.now().strftime('%H:%M:%S'), num)
     spool_proc.spool()
@@ -61,7 +61,9 @@ def thread_dump(signum):
     for threadId, stack in sys._current_frames().items():
         output.append(_colored('{:s}ThreadID: {:d} ({:s})'.format(' '*4, threadId, thread_names.get(threadId, 'NO_NAME_AVAILABLE')), 'white'))
         for filename, lineno, name, line in traceback.extract_stack(stack):
-            output.append(_colored('{:s}File: "{:s}", line {:d}, in {:s}'.format(' '*8, filename, lineno, name),'gray'))
+            output.append(_colored('{:s}File: "{:s}", line {:d}, in {:s}'.format(' '*8, filename, lineno, name), 'gray'))
+            if line:
+                output.append('{:s}{:s}'.format(' '*8, line.strip()))
     output.append('{:=^60s}'.format(' END THREAD DUMP '))
     print '\n'.join(output)
 
