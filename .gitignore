@@ -1,7 +1,8 @@
 *.py[co]
 .ropeproject
+tmp/sockets/**/*
 tmp/sockets/*
-tmp/logs/*
+tmp/logs/*.log
 
 # Packages
 *.egg
