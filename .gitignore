@@ -2,6 +2,7 @@
 .ropeproject
 tmp/sockets/*
 tmp/spooler/*
+tmp/logs/*
 # Packages
 *.egg
 *.egg-info
