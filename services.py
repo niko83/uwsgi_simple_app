@@ -4,7 +4,6 @@ import traceback                ## other uwsgi signals you define
 import datetime, time
 import uwsgidecorators
 import random
-import uwsgi
 import threading
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -12,7 +11,12 @@ LOGS_PATH = ROOT_PATH + '/tmp/logs/'
 TOUCHFILES_PATH = ROOT_PATH + '/tmp/touchfiles/'
 
 def _colored(text, color='reset'):
-    COLORS = { 'reset' : "\x1b[0m", 'green':"\x1b[32;01m", 'red':"\x1b[31;01m", 'gray':"\x1b[90;01m", 'white':"\x1b[1;01m"}
+    COLORS = {
+            'reset' : "\x1b[0m",
+            'green':"\x1b[32;01m",
+            'red':"\x1b[31;01m",
+            'gray':"\x1b[90;01m",
+            'white':"\x1b[1;01m"}
     return ''.join([COLORS[color], text, COLORS['reset']])
 
 @uwsgidecorators.cron(30, 3, -1, -1, -1)
